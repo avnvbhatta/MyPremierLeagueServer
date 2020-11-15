@@ -1,0 +1,29 @@
+{
+  "name": "mypremierleagueserver",
+  "version": "1.0.0",
+  "description": "Server for MyPremierLeague",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avnvbhatta/MyPremierLeagueServer.git"
+  },
+  "author": "Abhinav Bhatta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avnvbhatta/MyPremierLeagueServer/issues"
+  },
+  "homepage": "https://github.com/avnvbhatta/MyPremierLeagueServer#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "mongodb": "^3.6.2",
+    "morgan": "~1.9.1"
+  }
+}
