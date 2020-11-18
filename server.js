@@ -8,6 +8,7 @@ var app = express();
 app.use(cors());
 app.use(bodyParser.json())
 const port = 5000
+var ObjectID = require('mongodb').ObjectID;
 
 //MongoDB connection URI
 const uri = `mongodb+srv://avnvbhatta:${process.env.DB_PASSWORD}@cluster0.zxaaj.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
@@ -39,7 +40,7 @@ app.post('/login', async (req, res) => {
         {
             "email": email,
             "password": password
-        }, {projection: { "password": false, "_id": false}} ,
+        }, {projection: { "password": false}} ,
         )
        
         res.status(200).json({status: "Done", "data": result})
@@ -70,6 +71,24 @@ app.post('/signup', async (req, res) => {
     }
 })
 
+//Signup route for handling signups
+app.post('/checkloggedin', async (req, res) => {
+    let {id} = req.body;
+    console.log(id)
+    try{
+        const result = await collection.findOne(
+        {
+            "_id": ObjectID(id),
+        }, {projection: { "_id": true}} ,
+        )
+        res.status(200).json({status: "Done", "data": result})
+    }
+    catch(err){
+        res.status(400).json({status: "Error", "data": null})
+        console.log("Error: ", err)
+        throw createError(500, "Could not update data")
+    }
+})
 
 //Port to listen on for requests
 app.listen(port, () => {
