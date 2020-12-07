@@ -7,7 +7,8 @@ var createError = require("http-errors");
 var app = express();
 app.use(cors());
 app.use(bodyParser.json())
-const port = 5000
+const port = process.env.PORT || 3008;
+
 var ObjectID = require('mongodb').ObjectID;
 
 //MongoDB connection URI
@@ -31,6 +32,11 @@ async function connectMongo() {
 
 connectMongo();
 
+
+//Login route for handling login
+app.get('/test', async (req, res) => {
+    res.status(200).send('success')
+})
 
 //Login route for handling login
 app.post('/login', async (req, res) => {
@@ -74,7 +80,6 @@ app.post('/signup', async (req, res) => {
 //Signup route for handling signups
 app.post('/checkloggedin', async (req, res) => {
     let {id} = req.body;
-    console.log(id)
     try{
         const result = await collection.findOne(
         {
